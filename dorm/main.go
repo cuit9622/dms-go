@@ -2,10 +2,11 @@ package main
 
 import (
 	"cuit9622/dms-common/initialize"
-	"cuit9622/dms-common/jwtUtil"
+	"dms-dorm/api"
 )
 
 func main() {
-	initialize.Init()
-	jwtUtil.GetUserId("")
+	g := initialize.Init()
+	api.SetRouter(g)
+	g.Run(":8080")
 }

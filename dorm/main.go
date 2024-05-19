@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	g := initialize.Init()
+	g := initialize.InitSecurity()
 	api.SetRouter(g)
 	g.Run(":8080")
 }

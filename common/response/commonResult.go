@@ -1,6 +1,7 @@
 package response
 
 import (
+	"cuit9622/dms-common/response/errors"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -25,6 +26,15 @@ func Error(c *gin.Context, code int, msg string) {
 		CommonResult{
 			Code: code,
 			Msg:  msg,
+			Data: nil,
+		})
+}
+
+func ErrorCode(c *gin.Context, errorCode *errors.ErrorCode) {
+	c.JSON(http.StatusOK,
+		CommonResult{
+			Code: errorCode.Code,
+			Msg:  errorCode.Msg,
 			Data: nil,
 		})
 }

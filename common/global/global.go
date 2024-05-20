@@ -5,6 +5,7 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
+	"gorm.io/gorm"
 )
 
 var (
@@ -12,4 +13,5 @@ var (
 	GLO_LOG       *zap.Logger
 	GLO_REDIS     *redis.Client
 	GLO_PERMISSON map[string]*hashset.Set
+	GLO_DB        *gorm.DB
 )

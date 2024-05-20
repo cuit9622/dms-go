@@ -11,7 +11,9 @@ import (
 func initViper() {
 	// 初始化Viper
 	v := viper.New()
-	v.BindEnv("MYSQL_SERVER", "NACOS_SERVER", "REDIS_SERVER")
+	v.BindEnv("MYSQL_SERVER", "MYSQL_SERVER")
+	v.BindEnv("NACOS_SERVER", "NACOS_SERVER")
+	v.BindEnv("REDIS_SERVER", "REDIS_SERVER")
 	v.SetConfigFile("config.yaml")
 	v.SetConfigType("yaml")
 	err := v.ReadInConfig()

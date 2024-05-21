@@ -8,10 +8,10 @@ import (
 )
 
 func InitCommon() (*gin.Engine, net.Listener) {
-	initViper()
 	initZap()
-	nacosIP := InitNacos()
-	g, ln := initGin(nacosIP)
+	initViper()
+	g, ln := initGin()
+	InitNacos()
 	return g, ln
 }
 func InitSecurity() (*gin.Engine, net.Listener) {

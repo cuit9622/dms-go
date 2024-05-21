@@ -14,4 +14,5 @@ func InitRedis() {
 		DB:       0,                                     // 使用默认数据库
 	})
 	global.GLO_REDIS = client
+	global.GLO_LOG.Info("Redis initialization complete")
 }

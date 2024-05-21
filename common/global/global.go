@@ -3,7 +3,7 @@ package global
 import (
 	"github.com/emirpasic/gods/sets/hashset"
 	"github.com/go-redis/redis"
-	"github.com/nacos-group/nacos-sdk-go/clients/naming_client"
+	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"gorm.io/gorm"

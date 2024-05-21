@@ -6,12 +6,12 @@ import (
 	"net"
 	"strconv"
 
-	"github.com/nacos-group/nacos-sdk-go/clients"
-	"github.com/nacos-group/nacos-sdk-go/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/vo"
+	"github.com/nacos-group/nacos-sdk-go/v2/clients"
+	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
+	"github.com/nacos-group/nacos-sdk-go/v2/vo"
 )
 
-func InitNacos() string {
+func InitNacos() {
 	server := global.GLO_VP.GetString("NACOS_SERVER")
 	serverIP, serverPortStr, err := net.SplitHostPort(server)
 	if err != nil {
@@ -39,6 +39,19 @@ func InitNacos() string {
 	if err != nil {
 		panic(fmt.Errorf("fatal error create nacosClient: %s", err))
 	}
+	_, err = nacosClient.RegisterInstance(vo.RegisterInstanceParam{
+		Ip:          global.GLO_INFO.IP,
+		Port:        global.GLO_INFO.Port,
+		ServiceName: global.GLO_INFO.Name,
+		Weight:      1,
+		Enable:      true,
+		Healthy:     true,
+		Ephemeral:   true,
+		Metadata:    global.GLO_VP.GetStringMapString("nacos.metadata"),
+	})
+	if err != nil {
+		panic(fmt.Errorf("fatal error register instance: %s", err.Error()))
+	}
 	global.GLO_NACOS = &nacosClient
-	return serverIP
+	global.GLO_LOG.Info("Nacos initialization complete")
 }

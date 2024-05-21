@@ -8,11 +8,12 @@ import (
 )
 
 func initZap() {
-	// 初始化ZAP
-	logger, err := zap.NewProduction()
+	config := zap.NewDevelopmentConfig()
+	config.OutputPaths = []string{"stdout"}
+	logger, err := config.Build()
 	if err != nil {
 		panic(fmt.Errorf("fatal error create logger: %s", err))
 	}
-	defer logger.Sync() // zap底层有缓冲。在任何情况下执行 defer logger.Sync() 是一个很好的习惯
 	global.GLO_LOG = logger
+	logger.Info("Zap initialization complete")
 }

@@ -18,4 +18,5 @@ func InitGorm() {
 	}
 	global.GLO_DB = db
 	// err = db.Migrator().CreateTable(&entity.DormBed{}, &entity.Dorm{}, &entity.DormBuilding{})
+	global.GLO_LOG.Info("Gorm initialization complete")
 }

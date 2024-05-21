@@ -9,7 +9,6 @@ import (
 )
 
 func initViper() {
-	// 初始化Viper
 	v := viper.New()
 	v.BindEnv("MYSQL_SERVER", "MYSQL_SERVER")
 	v.BindEnv("NACOS_SERVER", "NACOS_SERVER")
@@ -25,4 +24,5 @@ func initViper() {
 		fmt.Println("config file changed:", e.Name)
 	})
 	global.GLO_VP = v
+	global.GLO_LOG.Info("Viper initialization complete")
 }

@@ -1,8 +1,8 @@
 package api
 
 import (
-	"cuit9622/dms-common/jwtUtil"
 	"cuit9622/dms-common/response"
+	"cuit9622/dms-common/util/jwtUtil"
 	"fmt"
 
 	"github.com/gin-gonic/gin"

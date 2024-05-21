@@ -1,7 +1,7 @@
 package api
 
 import (
-	"cuit9622/dms-common/ginUtil"
+	"cuit9622/dms-common/util/ginUtil"
 
 	"github.com/gin-gonic/gin"
 )

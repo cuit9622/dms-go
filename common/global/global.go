@@ -1,6 +1,8 @@
 package global
 
 import (
+	"cuit9622/dms-common/util/rpcUtil"
+
 	"github.com/emirpasic/gods/sets/hashset"
 	"github.com/go-redis/redis"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client"
@@ -23,4 +25,5 @@ var (
 	GLO_PERMISSON map[string]*hashset.Set = map[string]*hashset.Set{}
 	GLO_DB        *gorm.DB
 	GLO_NACOS     *naming_client.INamingClient
+	GLO_RPC       *rpcUtil.Client
 )

@@ -26,7 +26,7 @@ func initGin() (*gin.Engine, net.Listener) {
 	}
 
 	g := gin.New()
-	g.Use(middleware.ZapLogger, gin.Recovery())
+	g.Use(middleware.ZapLogger, gin.CustomRecovery(middleware.Recovery))
 	g.NoRoute(func(c *gin.Context) {
 		response.ErrorCode(c, errors.NOT_FOUND)
 	})

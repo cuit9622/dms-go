@@ -8,7 +8,7 @@ import (
 
 func SetRouter(c *gin.Engine) {
 	router := ginUtil.New(c.Group(""))
-	router.GET("test1", Test1, "van")
+	router.GET("test1", Test1)
 	router.POST("test2", Test2, "dark")
 	router.POST("test3", Test3, "homo", "fuck you")
 }

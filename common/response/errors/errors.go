@@ -1,8 +1,8 @@
 package errors
 
 type ErrorCode struct {
-	Code int
-	Msg  string
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
 }
 
 func new(code int, msg string) *ErrorCode {

@@ -28,7 +28,7 @@ func InitNacos() {
 	clientConfig := constant.ClientConfig{
 		TimeoutMs:           5000,
 		NotLoadCacheAtStart: true,
-		LogLevel:            "debug",
+		LogLevel:            "info",
 	}
 	nacosClient, err := clients.NewNamingClient(
 		vo.NacosClientParam{

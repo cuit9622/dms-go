@@ -1,6 +1,3 @@
 .vscode/
 build/
-# 只跟踪schema
-*/ent/*
-!*/ent
-!*/ent/schema
+*/log

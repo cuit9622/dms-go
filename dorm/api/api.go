@@ -14,7 +14,7 @@ type Test struct {
 }
 
 func Test1(c *gin.Context) {
-	response.Success(c, "Test1")
+	panic("wdnmd")
 }
 
 func Test2(c *gin.Context) {

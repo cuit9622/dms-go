@@ -1,21 +1,24 @@
 package initialize
 
 import (
-	"cuit9622/dms-common/middleware"
 	"net"
+
+	"github.com/cuit9622/dms/common/middleware"
 
 	"github.com/gin-gonic/gin"
 )
 
-func InitCommon() (*gin.Engine, net.Listener) {
+func InitCommon() net.Listener {
 	initZap()
 	initViper()
-	g, ln := initGin()
+	ln := initListener()
 	InitNacos()
-	return g, ln
+	return ln
 }
+
 func InitSecurity() (*gin.Engine, net.Listener) {
-	g, ln := InitCommon()
+	ln := InitCommon()
+	g := initGin()
 	InitRedis()
 	g.Use(middleware.SecurityMiddleWare)
 	return g, ln

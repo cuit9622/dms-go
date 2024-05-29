@@ -1,0 +1,7 @@
+application:
+  name: dorm-service
+nacos:
+  metadata:
+    public:
+server:
+  port: 0

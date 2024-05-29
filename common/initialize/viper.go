@@ -1,8 +1,9 @@
 package initialize
 
 import (
-	"cuit9622/dms-common/global"
 	"fmt"
+
+	"github.com/cuit9622/dms/common/global"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"

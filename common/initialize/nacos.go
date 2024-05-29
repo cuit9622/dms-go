@@ -1,10 +1,11 @@
 package initialize
 
 import (
-	"cuit9622/dms-common/global"
 	"fmt"
 	"net"
 	"strconv"
+
+	"github.com/cuit9622/dms/common/global"
 
 	"github.com/nacos-group/nacos-sdk-go/v2/clients"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
@@ -52,6 +53,6 @@ func InitNacos() {
 	if err != nil {
 		panic(fmt.Errorf("fatal error register instance: %s", err.Error()))
 	}
-	global.GLO_NACOS = &nacosClient
+	global.GLO_NACOS = nacosClient
 	global.GLO_LOG.Info("Nacos initialization complete")
 }

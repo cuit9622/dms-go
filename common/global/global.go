@@ -1,7 +1,7 @@
 package global
 
 import (
-	"cuit9622/dms-common/util/rpcUtil"
+	"github.com/cuit9622/dms/common/interfaces"
 
 	"github.com/emirpasic/gods/sets/hashset"
 	"github.com/go-redis/redis"
@@ -24,6 +24,6 @@ var (
 	GLO_REDIS     *redis.Client
 	GLO_PERMISSON map[string]*hashset.Set = map[string]*hashset.Set{}
 	GLO_DB        *gorm.DB
-	GLO_NACOS     *naming_client.INamingClient
-	GLO_RPC       *rpcUtil.Client
+	GLO_NACOS     naming_client.INamingClient
+	GLO_RPC       interfaces.RpcUtil
 )

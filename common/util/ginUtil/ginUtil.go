@@ -1,7 +1,7 @@
 package ginUtil
 
 import (
-	"cuit9622/dms-common/global"
+	"github.com/cuit9622/dms/common/global"
 
 	"github.com/emirpasic/gods/sets/hashset"
 	"github.com/gin-gonic/gin"

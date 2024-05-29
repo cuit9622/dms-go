@@ -1,11 +1,12 @@
 package middleware
 
 import (
-	"cuit9622/dms-common/global"
-	"cuit9622/dms-common/response"
-	"cuit9622/dms-common/response/errors"
-	"cuit9622/dms-common/util/jwtUtil"
 	"fmt"
+
+	"github.com/cuit9622/dms/common/global"
+	"github.com/cuit9622/dms/common/response"
+	"github.com/cuit9622/dms/common/response/errors"
+	"github.com/cuit9622/dms/common/util/jwtUtil"
 
 	"github.com/gin-gonic/gin"
 	"github.com/goccy/go-json"

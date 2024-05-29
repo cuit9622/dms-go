@@ -1,8 +1,9 @@
 package middleware
 
 import (
-	"cuit9622/dms-common/global"
 	"time"
+
+	"github.com/cuit9622/dms/common/global"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

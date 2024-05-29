@@ -1,8 +1,9 @@
 package response
 
 import (
-	"cuit9622/dms-common/response/errors"
 	"net/http"
+
+	"github.com/cuit9622/dms/common/response/errors"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,12 +1,13 @@
 package main
 
 import (
-	"cuit9622/dms-common/initialize"
-	"dms-dorm/api"
+	"github.com/cuit9622/dms/dorm/api"
+
+	"github.com/cuit9622/dms/common/initialize"
 )
 
 func main() {
 	g, ln := initialize.InitSecurity()
 	api.SetRouter(g)
-	initialize.RunServer(g, ln)
+	initialize.RunHttpServer(g, ln)
 }

@@ -1,7 +1,7 @@
 package initialize
 
 import (
-	"cuit9622/dms-common/global"
+	"github.com/cuit9622/dms/common/global"
 
 	"github.com/go-redis/redis"
 )

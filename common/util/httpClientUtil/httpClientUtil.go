@@ -1,4 +1,4 @@
-package rpcUtil
+package httpClientUtil
 
 import (
 	"fmt"

@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func initGin() *gin.Engine {
+func InitGin() *gin.Engine {
 	g := gin.New()
 	g.Use(middleware.ZapLogger, gin.CustomRecovery(middleware.Recovery))
 	g.NoRoute(func(c *gin.Context) {

@@ -18,12 +18,12 @@ type Info struct {
 }
 
 var (
-	GLO_INFO      Info
-	GLO_VP        *viper.Viper
-	GLO_LOG       *zap.Logger
-	GLO_REDIS     *redis.Client
-	GLO_PERMISSON map[string]*hashset.Set = map[string]*hashset.Set{}
-	GLO_DB        *gorm.DB
-	GLO_NACOS     naming_client.INamingClient
-	GLO_RPC       interfaces.RpcUtil
+	GLO_INFO        Info
+	GLO_VP          *viper.Viper
+	GLO_LOG         *zap.Logger
+	GLO_REDIS       *redis.Client
+	GLO_PERMISSON   map[string]*hashset.Set = map[string]*hashset.Set{}
+	GLO_DB          *gorm.DB
+	GLO_NACOS       naming_client.INamingClient
+	GLO_HTTP_CLIENT interfaces.HttpClient
 )

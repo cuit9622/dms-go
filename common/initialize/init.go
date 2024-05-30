@@ -18,7 +18,7 @@ func InitCommon() net.Listener {
 
 func InitSecurity() (*gin.Engine, net.Listener) {
 	ln := InitCommon()
-	g := initGin()
+	g := InitGin()
 	InitRedis()
 	g.Use(middleware.SecurityMiddleWare)
 	return g, ln

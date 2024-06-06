@@ -32,7 +32,7 @@ func RunHttpServer(g *gin.Engine, ln net.Listener) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := server.Shutdown(ctx); err != nil {
-		global.GLO_LOG.Panic(fmt.Sprintf("failed close server: %s", err.Error()))
+		global.GLO_LOG.Error(fmt.Sprintf("failed close server: %s", err.Error()))
 	}
 	closeConnections()
 }

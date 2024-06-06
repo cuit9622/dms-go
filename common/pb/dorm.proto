@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package dorm;
+
+import "google/protobuf/wrappers.proto";
+import "common.proto";
+
+option go_package = "github.com/cuit9622/dms/common/pb";
+
+message DormBuilding {
+  int64 id = 1;
+  string name = 2;
+  int32 sex = 3;
+}
+
+message DormBuildings {
+  repeated DormBuilding dormBuildings = 1;
+}
+
+service DormBuildingService {
+  rpc Create(DormBuilding) returns (google.protobuf.Int32Value) {}
+  rpc Get(common.PageRequest) returns (common.PageResult) {}
+  rpc Update(DormBuilding) returns (google.protobuf.Int32Value) {}
+  rpc Delete(google.protobuf.Int64Value) returns (google.protobuf.Int32Value) {}
+}

@@ -1,4 +1,5 @@
 .vscode/
+.idea/
 build/
 */log
 *.pb.go

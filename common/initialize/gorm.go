@@ -15,7 +15,7 @@ func InitGorm() {
 		DisableForeignKeyConstraintWhenMigrating: true,
 	})
 	if err != nil {
-		panic(fmt.Errorf("fatal error create logger: %s", err))
+		panic(fmt.Errorf("error create gorm: %s", err))
 	}
 	global.GLO_DB = db
 	// err = db.Migrator().CreateTable(&entity.DormBed{}, &entity.Dorm{}, &entity.DormBuilding{})

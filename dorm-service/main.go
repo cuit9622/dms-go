@@ -1,30 +1,18 @@
 package main
 
 import (
-	"context"
-
 	"github.com/cuit9622/dms/common/initialize"
-	"github.com/cuit9622/dms/common/proto"
-
+	"github.com/cuit9622/dms/common/pb"
+	"github.com/cuit9622/dms/dorm-service/service"
 	"google.golang.org/grpc"
 )
 
-type GreeterServerImpl struct {
-	proto.UnimplementedGreeterServer
-}
-
-func (i GreeterServerImpl) SayHello(context context.Context, in *proto.IdRequest) (*proto.HelloReply, error) {
-	if in.GetId() == 1 {
-		return &proto.HelloReply{Name: "Van", Age: 30}, nil
-	}
-	return &proto.HelloReply{Name: "Xianbei", Age: 114514}, nil
-}
-
 func main() {
 	ln := initialize.InitCommon()
+	initialize.InitGorm()
 
-	grpcServer := grpc.NewServer()
-	proto.RegisterGreeterServer(grpcServer, GreeterServerImpl{})
+	server := grpc.NewServer()
+	pb.RegisterDormBuildingServiceServer(server, service.DormBuildingService{})
 
-	initialize.RunGrpcServer(grpcServer, ln)
+	initialize.RunGrpcServer(server, ln)
 }

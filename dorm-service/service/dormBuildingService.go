@@ -21,13 +21,15 @@ func (i DormBuildingService) Create(ctx context.Context, in *pb.DormBuilding) (*
 }
 
 func (i DormBuildingService) Get(ctx context.Context, p *pb.PageRequest) (*pb.PageResult, error) {
+	var total int64
 	result := pb.DormBuildings{}
 	global.GLO_DB.Scopes(gormUtil.Paginate(p.Page, p.PageSize)).Model(&entity.DormBuilding{}).Find(&result.DormBuildings)
+	global.GLO_DB.Model(&entity.DormBuilding{}).Count(&total)
 	r, err := anypb.New(&result)
 	if err != nil {
 		return nil, err
 	}
-	return &pb.PageResult{Total: 0, Data: r}, nil
+	return &pb.PageResult{Total: total, Records: r}, nil
 }
 
 func (i DormBuildingService) Update(ctx context.Context, building *pb.DormBuilding) (*wrapperspb.Int32Value, error) {

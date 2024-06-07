@@ -13,5 +13,5 @@ message PageRequest {
 
 message PageResult{
   int64 total = 1;
-  google.protobuf.Any data = 2;
+  google.protobuf.Any records = 2; //这是具体数据的数组
 }

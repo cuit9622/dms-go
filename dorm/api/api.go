@@ -61,11 +61,11 @@ func getDormBuildings(c *gin.Context) {
 		Total: r.Total,
 	}
 	dst := pb.DormBuildings{}
-	err = anypb.UnmarshalTo(r.Data, &dst, proto.UnmarshalOptions{})
+	err = anypb.UnmarshalTo(r.Records, &dst, proto.UnmarshalOptions{})
 	if err != nil {
 		return
 	}
-	pageResult.Data = &dst.DormBuildings
+	pageResult.Records = &dst.DormBuildings
 	response.Success(c, pageResult)
 }
 func updateDormBuilding(c *gin.Context) {

@@ -6,6 +6,6 @@ type PageRequest struct {
 }
 
 type PageResult struct {
-	Total int64 `json:"total"`
-	Data  any   `json:"data"`
+	Total   int64 `json:"total"`
+	Records any   `json:"records"`
 }

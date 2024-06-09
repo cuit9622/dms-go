@@ -30,7 +30,11 @@ func Test1(c *gin.Context) {
 }
 func createDormBuilding(c *gin.Context) {
 	building := pb.DormBuilding{}
-	c.ShouldBindJSON(&building)
+	err := c.ShouldBindJSON(&building)
+	if err != nil {
+		response.ErrorCode(c, errors.BAD_REQUEST)
+		return
+	}
 	var r int32
 	grpcUtil.CallGrpc("dorm-service", func(con *grpc.ClientConn, ctx context.Context) error {
 		service := client.GetDormBuildingService(con)
@@ -45,6 +49,7 @@ func getDormBuildings(c *gin.Context) {
 	page := model.PageRequest{}
 	err := c.ShouldBindQuery(&page)
 	if err != nil {
+		response.ErrorCode(c, errors.BAD_REQUEST)
 		return
 	}
 	var r *pb.PageResult
@@ -65,6 +70,9 @@ func getDormBuildings(c *gin.Context) {
 	if err != nil {
 		return
 	}
+	if dst.DormBuildings == nil {
+		dst.DormBuildings = []*pb.DormBuilding{}
+	}
 	pageResult.Records = &dst.DormBuildings
 	response.Success(c, pageResult)
 }
@@ -72,6 +80,7 @@ func updateDormBuilding(c *gin.Context) {
 	building := pb.DormBuilding{}
 	err := c.ShouldBindJSON(&building)
 	if err != nil {
+		response.ErrorCode(c, errors.BAD_REQUEST)
 		return
 	}
 	var r int32

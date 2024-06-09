@@ -1,4 +1,5 @@
 import argparse
+import glob
 import multiprocessing
 import os
 import subprocess
@@ -34,6 +35,15 @@ def execute(folders: list[str], command: str):
         process.join()
 
 
+def replace_text_in_file(file_path, old_text, new_text):
+    with open(file_path, 'r+', encoding='UTF-8') as file:
+        file_content = file.read()
+        modified_content = file_content.replace(old_text, new_text)
+        file.seek(0)
+        file.write(modified_content)
+        file.truncate()
+
+
 def tidy():
     command = "go mod tidy"
     executeProcess("common", command)
@@ -45,15 +55,26 @@ def build():
     execute(folders, "go build -o ../build")
 
 
+def proto():
+    os.chdir("common/pb")
+    executeProcess(
+        ".", "protoc --proto_path=. --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative *.proto")
+    fileList = glob.glob("*.pb.go")
+    for file in fileList:
+        replace_text_in_file(file, ",omitempty", "") #删除omitempty
+
+
 if __name__ == '__main__':
     multiprocessing.freeze_support()  # 在Windows下必须调用此函数
     parser = argparse.ArgumentParser(description='Help to build')
     parser.add_argument('action', choices=[
-                        'tidy', 'build'], help='Choose one of the actions')
+                        'tidy', 'build', 'proto'], help='Choose one of the actions')
     args = parser.parse_args()
     if args.action == 'tidy':
         tidy()
     elif args.action == 'build':
         build()
+    elif args.action == 'proto':
+        proto()
     else:
         raise Exception("unknow arg")

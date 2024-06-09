@@ -20,7 +20,7 @@ func initListener() net.Listener {
 		Port: port,
 		Name: global.GLO_VP.GetString("application.name"),
 	}
-	global.GLO_LOG.Info(fmt.Sprintf("port binding on: %d", port))
+	global.GLO_LOG.Info(fmt.Sprintf("server listen on: %s:%d", global.GLO_INFO.IP, global.GLO_INFO.Port))
 	return ln
 }
 

@@ -7,19 +7,26 @@ import "common.proto";
 
 option go_package = "github.com/cuit9622/dms/common/pb";
 
-message DormBuilding {
+message Dorm{
   int64 id = 1;
   string name = 2;
-  int32 sex = 3;
+  int32 size = 3;
+  int32 floor = 4;
+  int64 dormBuildingID = 5;
 }
 
-message DormBuildings {
-  repeated DormBuilding dormBuildings = 1;
+message Dorms{
+  repeated Dorm dorms = 1;
 }
 
-service DormBuildingService {
-  rpc Create(DormBuilding) returns (google.protobuf.Int32Value) {}
-  rpc Get(common.PageRequest) returns (common.PageResult) {}
-  rpc Update(DormBuilding) returns (google.protobuf.Int32Value) {}
+message DormGetRequest{
+  int64 dormBuildingID = 1;
+  int32 floor = 2;
+  common.PageRequest page = 3;
+}
+
+service DormService {
+  rpc Get(DormGetRequest) returns (common.PageResult) {}
+  rpc Update(Dorm) returns (google.protobuf.Int32Value) {}
   rpc Delete(google.protobuf.Int64Value) returns (google.protobuf.Int32Value) {}
 }

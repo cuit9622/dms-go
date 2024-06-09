@@ -13,6 +13,7 @@ func main() {
 
 	server := grpc.NewServer()
 	pb.RegisterDormBuildingServiceServer(server, service.DormBuildingService{})
+	pb.RegisterDormServiceServer(server, service.DormService{})
 
 	initialize.RunGrpcServer(server, ln)
 }

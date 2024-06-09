@@ -3,8 +3,8 @@ package entity
 type Dorm struct {
 	ID             int64  `gorm:"primaryKey;comment:寝室主键"`
 	Name           string `gorm:"not null;comment:寝室名字"`
-	Size           int    `gorm:"not null;comment:寝室人数"`
-	Floor          int    `gorm:"not null;comment:寝室所在楼层"`
+	Size           int32  `gorm:"not null;comment:寝室人数"`
+	Floor          int32  `gorm:"not null;comment:寝室所在楼层"`
 	DormBuildingID int64  `gorm:"not null;comment:寝室楼ID"`
 	DormBeds       []DormBed
 }
@@ -14,7 +14,8 @@ type DormBed struct {
 	DormId    int64 `gorm:"not null;comment:寝室ID"`
 }
 type DormBuilding struct {
-	ID   int64  `gorm:"primaryKey;comment:寝室楼ID"`
-	Name string `gorm:"not null;comment:寝室名字"`
-	Sex  int8   `gorm:"not null;comment:寝室性别 0-女,1-男"`
+	ID    int64  `gorm:"primaryKey;comment:寝室楼ID"`
+	Name  string `gorm:"not null;comment:寝室名字"`
+	Sex   int8   `gorm:"not null;comment:寝室性别 0-女,1-男"`
+	Floor int32  `gorm:"not null;comment:寝室楼层"`
 }

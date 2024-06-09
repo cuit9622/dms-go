@@ -2,7 +2,6 @@ package initialize
 
 import (
 	"fmt"
-
 	"github.com/cuit9622/dms/common/global"
 
 	"gorm.io/driver/mysql"

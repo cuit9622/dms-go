@@ -25,6 +25,11 @@ func (d DormService) Get(_ context.Context, request *pb.DormGetRequest) (*pb.Pag
 		Model(&entity.Dorm{}).
 		Find(&result.Dorms, &query)
 	global.GLO_DB.Model(&entity.Dorm{}).Find(nil, &query).Count(&total)
+
+	for _, item := range result.Dorms {
+		global.GLO_DB.Model(&entity.DormBed{}).Select("id", "student_id").Find(&item.DormBeds, map[string]interface{}{"dorm_id": item.Id})
+	}
+
 	r, err := anypb.New(&result)
 	if err != nil {
 		return nil, err

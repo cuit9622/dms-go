@@ -61,7 +61,7 @@ def proto():
         ".", "protoc --proto_path=. --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative *.proto")
     fileList = glob.glob("*.pb.go")
     for file in fileList:
-        replace_text_in_file(file, ",omitempty", "") #删除omitempty
+        replace_text_in_file(file, "json:\"sex,omitempty\"", "json:\"sex\"") #删除sex属性的omitempty
 
 
 if __name__ == '__main__':

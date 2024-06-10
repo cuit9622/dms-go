@@ -20,4 +20,7 @@ func SetRouter(c *gin.Engine) {
 	router.GET("dorm", getDorms)
 	router.PUT("dorm", updateDorm)
 	router.DELETE("dorm/:id", deleteDorm)
+
+	router.PUT("dormBed", updateDormBed)
+	router.DELETE("dormBed/:id", deleteDormBed)
 }

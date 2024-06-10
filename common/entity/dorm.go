@@ -11,7 +11,7 @@ type Dorm struct {
 type DormBed struct {
 	ID        int64 `gorm:"primaryKey;comment:床ID"`
 	StudentID int64 `gorm:"not null;comment:床绑定的学生ID"`
-	DormId    int64 `gorm:"not null;comment:寝室ID"`
+	DormID    int64 `gorm:"not null;comment:寝室ID"`
 }
 type DormBuilding struct {
 	ID    int64  `gorm:"primaryKey;comment:寝室楼ID"`

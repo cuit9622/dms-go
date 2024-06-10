@@ -16,11 +16,13 @@ import (
 	"strconv"
 )
 
+//go:generate gomodifytags -all -add-tags form -transform camelcase --skip-unexported -w -file $GOFILE
+
 type dormGetRequest struct {
-	DormBuildingID int64
-	Floor          int32
-	Page           int32
-	PageSize       int32
+	DormBuildingID int64 `form:"dormBuildingID"`
+	Floor          int32 `form:"floor"`
+	Page           int32 `form:"page"`
+	PageSize       int32 `form:"pageSize"`
 }
 
 func getDorms(c *gin.Context) {

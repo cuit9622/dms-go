@@ -12,3 +12,7 @@ func GetDormBuildingService(con *grpc.ClientConn) pb.DormBuildingServiceClient {
 func GetDormService(con *grpc.ClientConn) pb.DormServiceClient {
 	return pb.NewDormServiceClient(con)
 }
+
+func GetDormBedService(con *grpc.ClientConn) pb.DormBedServiceClient {
+	return pb.NewDormBedServiceClient(con)
+}

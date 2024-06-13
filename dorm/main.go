@@ -9,5 +9,6 @@ import (
 func main() {
 	g, ln := initialize.InitSecurity()
 	api.SetRouter(g)
+	initialize.InitHttpClient()
 	initialize.RunHttpServer(g, ln)
 }

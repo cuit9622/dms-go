@@ -3,12 +3,12 @@ package api
 import (
 	"context"
 	"github.com/cuit9622/dms/common/entity"
+	"github.com/cuit9622/dms/common/global"
 	"github.com/cuit9622/dms/common/model"
 	"github.com/cuit9622/dms/common/pb"
 	"github.com/cuit9622/dms/common/response"
 	"github.com/cuit9622/dms/common/response/errors"
 	"github.com/cuit9622/dms/common/util/grpcUtil"
-	"github.com/cuit9622/dms/common/util/httpClientUtil"
 	"github.com/cuit9622/dms/dorm/client"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
@@ -37,6 +37,7 @@ type DormBed struct {
 	StudentNo   string `form:"studentNo" json:"studentNo,omitempty"`
 }
 type Student struct {
+	ID     int64  `json:"stuId,omitempty" form:"stuId"`
 	Name   string `json:"name,omitempty" form:"name"`
 	Sex    int64  `json:"sex" form:"sex"`
 	StuNum string `json:"stuNum,omitempty" form:"stuNum"`
@@ -77,7 +78,6 @@ func getDorms(c *gin.Context) {
 
 	wg := sync.WaitGroup{}
 	records := make([]Dorm, len(dst.Dorms))
-	rpcClient := httpClientUtil.New()
 	for i, dorm := range dst.Dorms {
 		record := &records[i]
 		record.ID = dorm.Id
@@ -95,7 +95,7 @@ func getDorms(c *gin.Context) {
 				go func() {
 					defer wg.Done()
 					student := Student{}
-					err := rpcClient.GetWithPathVariable(
+					err := global.GLO_HTTP_CLIENT.GetWithPathVariable(
 						"student",
 						"/student",
 						strconv.FormatInt(bed.StudentID, 10),

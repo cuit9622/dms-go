@@ -89,6 +89,8 @@ func getDorms(c *gin.Context) {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
+
+			var lock sync.Mutex
 			for _, bed := range item.DormBeds {
 				wg.Add(1)
 				bed := bed
@@ -101,8 +103,10 @@ func getDorms(c *gin.Context) {
 						strconv.FormatInt(bed.StudentID, 10),
 						&student)
 					if err != nil {
+						global.GLO_LOG.Error(err.Error())
 						return
 					}
+					lock.Lock()
 					record.DormBeds = append(record.DormBeds, DormBed{
 						DormBed: entity.DormBed{
 							ID:        bed.Id,
@@ -111,6 +115,7 @@ func getDorms(c *gin.Context) {
 						StudentName: student.Name,
 						StudentNo:   student.StuNum,
 					})
+					lock.Unlock()
 				}()
 			}
 		}()

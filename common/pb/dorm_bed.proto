@@ -23,7 +23,18 @@ message DormBedGetRequest{
   common.PageRequest page = 3;
 }
 
+message StudentCount{
+  int64 id = 1;
+  string name = 2;
+  int32 count = 3;
+}
+
+message StudentCounts{
+  repeated StudentCount studentCounts = 1;
+}
+
 service DormBedService {
+  rpc GetStudentCount(google.protobuf.Int64Value) returns (StudentCounts) {}
   rpc Update(DormBed) returns (google.protobuf.Int32Value) {}
   rpc Delete(google.protobuf.Int64Value) returns (google.protobuf.Int32Value) {}
 }

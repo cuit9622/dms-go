@@ -12,6 +12,16 @@ type DormBedService struct {
 	pb.UnimplementedDormBedServiceServer
 }
 
+func (d DormBedService) GetStudentCount(context.Context, *wrapperspb.Int64Value) (*pb.StudentCounts, error) {
+	result := pb.StudentCounts{}
+	global.GLO_DB.Raw(`select id,name,
+(select count(*) from dorms 
+inner join dorm_beds on dorms.id=dorm_beds.dorm_id
+where dorms.dorm_building_id=dorm_buildings.id and dorm_beds.student_id!=0) 'count'
+from dorm_buildings`).Scan(&result.StudentCounts)
+	return &result, nil
+}
+
 func (d DormBedService) Update(_ context.Context, bed *pb.DormBed) (*wrapperspb.Int32Value, error) {
 	dorm := entity.Dorm{}
 	global.GLO_DB.Select("size").First(&dorm, bed.DormID)

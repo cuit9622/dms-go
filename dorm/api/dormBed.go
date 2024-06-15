@@ -14,6 +14,18 @@ import (
 	"strconv"
 )
 
+func getDormCount(c *gin.Context) {
+	var r *[]*pb.StudentCount
+	grpcUtil.CallGrpc("dorm-service", func(con *grpc.ClientConn, ctx context.Context) error {
+		service := client.GetDormBedService(con)
+		var err error
+		result, err := service.GetStudentCount(ctx, wrapperspb.Int64(0))
+		r = &result.StudentCounts
+		return err
+	})
+	response.Success(c, r)
+}
+
 func updateDormBed(c *gin.Context) {
 	bed := DormBed{}
 	err := c.ShouldBindJSON(&bed)
